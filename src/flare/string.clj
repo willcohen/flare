@@ -4,6 +4,7 @@
             [flare.report :refer [Report]]
             [flare.util :refer [pluralize]])
   (:import [name.fraser.neil.plaintext diff_match_patch]
+           [name.fraser.neil.plaintext diff_match_patch$Diff]
            [name.fraser.neil.plaintext diff_match_patch$Operation]))
 
 (defn diff-match-patch-string
@@ -19,7 +20,7 @@
    diff_match_patch$Operation/DELETE :delete})
 
 (defn diff->tuple
-  [diff]
+  [^diff_match_patch$Diff diff]
   [(operation->keyword (.operation diff)) (.text diff)])
 
 (defn insert-operation?
